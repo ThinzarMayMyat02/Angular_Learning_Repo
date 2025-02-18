@@ -1,0 +1,11 @@
+
+<h2>Parent Components</h2>
+
+<app-child (changeIndex)="test($event)" [name]="name"></app-child>
+
+<button (click)="changeName('Green')">Green</button>
+
+<button (click)="changeName('Yellow')">Yellow</button>
+
+<h1>{{index}}</h1>
+

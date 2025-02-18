@@ -1,0 +1,9 @@
+<!--
+<h1> {{name}} </h1>
+
+<input  type="text" [(ngModel)]="name" />
+-->
+
+<Label>For Title {{nametest}}</Label>
+
+<input type="text" #name [value]="nametest" (keypress)="updateName(name.value)">
