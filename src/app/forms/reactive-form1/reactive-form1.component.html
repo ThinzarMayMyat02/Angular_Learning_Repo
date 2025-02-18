@@ -1,0 +1,61 @@
+<h1>Reactive-form1 </h1>
+<form [formGroup]="form">
+  <div>
+    <label for="name">Name: </label>
+    <input type="text" name="name" id="name" formControlName="name" placeholder="Please enter name.">
+    @if (form.get('name')?.touched && form.get('name')?.errors?.['required']) {
+      <div>
+          <span style="color: red;">Name is required.</span>
+      </div>
+    }
+  </div>
+  <br>
+  <div>
+    <label for="age">Age: </label>
+    <input type="number" name="age" id="age" formControlName="age"  placeholder="Please enter age.">
+    @if (form.get('age')?.touched) {
+        @if ( form.get('age')?.errors?.['required']) {
+        <div>
+          <span style="color:red;">Age is required.</span>
+        </div>
+        }@else if (form.get('age')?.errors?.['min']) {
+          <div>
+            <span style="color: red;">Age is young.</span>
+          </div>
+        }
+    }
+  </div>
+  <br>
+  <div>
+    <label for="email">Email: </label>
+    <input type="email" name="email" id="email" formControlName="email" placeholder="Please enter email.">
+    @if (form.get('email')?.touched && form.get('email')?.errors?.['required']) {
+      <div>
+        <span style="color: red;">Email is requied</span>
+      </div>
+    }
+  </div>
+  <br>
+
+  <div>
+    <label for="isStudent">Is Student</label>
+    <input type="checkbox" name="isStudent" id="isStudent" formControlName="isStudent">
+  </div>
+  @if (checkControlContains('studentId')) {
+    <div>
+      <label for="studentId">Student Id</label><br>
+      <input type="text" id="studentId" formControlName="studentId" placeholder="Enter student id">
+      @let studentId = form.get('studentId');
+      @if (studentId?.touched) {
+          @if (studentId?.errors?.['required']) {
+              <div>
+                  <span style="color: red;">Student Id is required</span>
+              </div>
+          }
+      }
+    </div>
+  }
+
+  <button (click)="submit()" type="submit">Submit</button>
+</form>
+
