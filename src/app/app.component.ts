@@ -18,11 +18,12 @@ import { TitleComponent } from './test/title/title.component';
 import { Child2Component } from './test/child2/child2.component';
 import { ReactiveForm1Component } from './forms/reactive-form1/reactive-form1.component';
 import { ReactiveFormArrayComponent } from "./forms/reactive-form-array/reactive-form-array.component";
+import { TemplateDriven1Component } from "./forms/template-driven1/template-driven1.component";
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [ ReactiveFormArrayComponent],
+  imports: [ReactiveFormArrayComponent, TemplateDriven1Component],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })

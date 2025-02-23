@@ -1,1 +1,74 @@
-<p>template-driven1 works!</p>
+<h1 style="text-align: center;">Template Driven Form</h1>
+<form>
+  <div class="row">
+      <div class="col"></div>
+      <div class="col">
+          <form #studentForm="ngForm" (ngSubmit)="onSubmit()">
+              @for (student of students; let index = $index; track index) {
+              <div class="mb-3">
+                  <label for="name" class="form-label">Name</label>
+                  <input type="text" [(ngModel)]="student.name" [name]="'name'+index" class="form-control" id="name"
+                      placeholder="Enter name" required>
+                  @let nameControl = studentForm.controls['name'+index];
+                  @if (nameControl?.touched) {
+                  @if (nameControl.errors?.['required']) {
+                  <div>
+                      <span style="color: red;">Name is required</span>
+                  </div>
+                  }
+                  }
+              </div>
+              <div class="mb-3">
+                  <label for="age" class="form-label">Age</label>
+                  <input type="number" [(ngModel)]="student.age" [name]="'age'+index" class="form-control" id="age"
+                      placeholder="Enter age" required>
+                  @let ageControl = studentForm.controls['age'+index];
+                  @if (ageControl?.touched) {
+                  @if (ageControl.errors?.['required']) {
+                  <div>
+                      <span style="color: red;">Age is required</span>
+                  </div>
+                  }
+                  }
+              </div>
+              <div class="mb-3">
+                  <label for="exampleFormControlInput1" class="form-label">Email address</label>
+                  <input type="email" [(ngModel)]="student.email" [name]="'email'+index" class="form-control"
+                      id="exampleFormControlInput1" placeholder="test@example.com" required>
+                  @let emailControl = studentForm.controls['email'+index];
+                  @if (emailControl?.touched) {
+                  @if (emailControl.errors?.['required']) {
+                  <div>
+                      <span style="color: red;">Email is required</span>
+                  </div>
+                  }
+                  }
+              </div>
+              <div class="form-check">
+                  <input [(ngModel)]="student.isStudent" [name]="'isStudent'+index" class="form-check-input" type="checkbox"
+                  id="isStudent" (ngModelChange)="handleIsStudentChange(student)">
+
+                  <label class="form-check-label" for="isStudent">Is student</label>
+              </div>
+              @if (student.isStudent) {
+              <div class="mb-3">
+                  <label for="studentId" class="form-label">Student Id</label>
+                  <input type="text" [(ngModel)]="student.studentId" [name]="'studentId'+index" class="form-control"
+                      id="studentId" placeholder="123456789" [required]="student.isStudent">
+                  @let studentIdControl = studentForm.controls['studentId'+index];
+                  @if (studentIdControl?.touched) {
+                  @if (studentIdControl.errors?.['required']) {
+                  <div>
+                      <span style="color: red;">Student Id is required</span>
+                  </div>
+                  }
+                  }
+              </div>
+              }
+              }
+              <button type="submit" class="btn btn-primary">Submit</button>
+          </form>
+      </div>
+      <div class="col"></div>
+  </div>
+</form>
